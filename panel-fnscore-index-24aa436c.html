@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>蜂鸟电竞 · 资料索引库</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", sans-serif;
+      background: #f5f8fc;
+      color: #1e2a3e;
+      line-height: 1.6;
+    }
+
+    /* 深色头图 */
+    .hero {
+      background: linear-gradient(145deg, #0b1622 0%, #1c2b3f 100%);
+      color: #e9edf4;
+      padding: 4rem 2rem 3.5rem 2rem;
+      text-align: center;
+      border-bottom: 4px solid #3b9eff;
+    }
+
+    .hero h1 {
+      font-size: 2.6rem;
+      font-weight: 500;
+      letter-spacing: 1px;
+      margin-bottom: 0.6rem;
+    }
+
+    .hero h1 i {
+      color: #3b9eff;
+      font-style: normal;
+    }
+
+    .hero .subhead {
+      font-size: 1.1rem;
+      color: #b6c8dd;
+      max-width: 700px;
+      margin: 0 auto;
+      border-top: 1px solid #324b64;
+      padding-top: 1.2rem;
+    }
+
+    .tagline {
+      display: inline-block;
+      background: #2f4b6b;
+      color: #cfdef5;
+      padding: 0.3rem 1.4rem;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      margin-top: 1.8rem;
+    }
+
+    /* 浅色正文区 */
+    .content-wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2.8rem 1.5rem 4rem 1.5rem;
+    }
+
+    .intro-section {
+      background: white;
+      border-radius: 24px;
+      padding: 2.5rem 2.8rem;
+      box-shadow: 0 8px 24px rgba(0, 20, 40, 0.04);
+      margin-bottom: 3.2rem;
+    }
+
+    .intro-section p {
+      font-size: 1.05rem;
+      color: #2a3b53;
+      margin-bottom: 1.2rem;
+    }
+
+    .intro-section p:last-child {
+      margin-bottom: 0;
+    }
+
+    .accent-link {
+      color: #1d7bdf;
+      font-weight: 500;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(29, 123, 223, 0.3);
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .accent-link:hover {
+      color: #0b4c99;
+      border-bottom-color: #0b4c99;
+    }
+
+    /* 目录感布局：卡片网格 */
+    .index-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 1.2rem;
+      margin-bottom: 2.8rem;
+    }
+
+    .index-card {
+      background: white;
+      border-radius: 20px;
+      padding: 1.8rem 1.8rem 2rem 1.8rem;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.02);
+      transition: transform 0.15s, box-shadow 0.2s;
+      border: 1px solid #e9eef6;
+    }
+
+    .index-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 30px rgba(28, 43, 63, 0.06);
+    }
+
+    .index-card .card-head {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 1rem;
+    }
+
+    .index-card .card-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      background: #e1edfc;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      color: #1d7bdf;
+    }
+
+    .index-card h3 {
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: #13202e;
+    }
+
+    .index-card p {
+      color: #3d4f69;
+      font-size: 0.95rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .index-card .meta-tag {
+      display: inline-block;
+      background: #edf3fb;
+      color: #1d5b9e;
+      font-size: 0.8rem;
+      padding: 0.2rem 0.9rem;
+      border-radius: 30px;
+      margin-top: 0.6rem;
+    }
+
+    /* 提示区 */
+    .notice-area {
+      background: #e9f0fa;
+      border-left: 5px solid #3b9eff;
+      border-radius: 18px;
+      padding: 1.6rem 2.2rem;
+      margin: 2.4rem 0 3rem 0;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      gap: 1rem 1.8rem;
+    }
+
+    .notice-area .notice-icon {
+      font-size: 1.8rem;
+      line-height: 1;
+      color: #1f6bc0;
+    }
+
+    .notice-area .notice-text {
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .notice-area .notice-text p {
+      color: #1b3350;
+      margin: 0.25rem 0;
+    }
+
+    .notice-area .notice-text strong {
+      color: #0b2d55;
+    }
+
+    /* 相关信息区 —— FAQ 摘要风格 */
+    .info-bonus {
+      background: white;
+      border-radius: 24px;
+      padding: 2rem 2.6rem 2.6rem 2.6rem;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.02);
+      margin-top: 1rem;
+    }
+
+    .info-bonus h2 {
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: #0e1f31;
+      margin-bottom: 1.6rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .faq-item {
+      padding: 1rem 0;
+      border-bottom: 1px solid #e3eaf2;
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+
+    .faq-item .faq-q {
+      font-weight: 500;
+      color: #11273d;
+      margin-bottom: 0.3rem;
+    }
+
+    .faq-item .faq-a {
+      color: #3b506e;
+      font-size: 0.95rem;
+    }
+
+    .faq-item .faq-a a {
+      color: #1d7bdf;
+      text-decoration: none;
+      border-bottom: 1px dotted #94b8e6;
+    }
+
+    .faq-item .faq-a a:hover {
+      border-bottom-style: solid;
+      color: #0851aa;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #dce4ef;
+      margin: 2rem 0 1.8rem 0;
+    }
+
+    .footnote {
+      font-size: 0.9rem;
+      color: #5b6f8a;
+      text-align: center;
+      margin-top: 2.5rem;
+    }
+
+    /* 响应式 */
+    @media (max-width: 650px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+      .intro-section {
+        padding: 1.8rem 1.2rem;
+      }
+      .index-grid {
+        grid-template-columns: 1fr;
+      }
+      .notice-area {
+        padding: 1.2rem 1.5rem;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .info-bonus {
+        padding: 1.5rem 1.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 深色头图 -->
+  <header class="hero">
+    <h1>📚 <i>蜂鸟电竞</i> · 资料索引</h1>
+    <p class="subhead">从信息整理到知识库搭建，围绕赛事、队伍、历史数据与版本资讯，聚合可查证的内容入口。</p>
+    <span class="tagline">结构化 · 非官方 · 索引向</span>
+  </header>
+
+  <div class="content-wrapper">
+
+    <!-- 说明区：从资料整理切入 -->
+    <section class="intro-section">
+      <p>这个页面是一份围绕 <strong>蜂鸟电竞</strong> 相关公开信息而整理的资料索引。不同于官方门户或营销站点，这里更侧重于将散落在赛事报道、社区讨论、数据平台中的内容线索，以卡片和条目形式归拢，方便快速检索与交叉参考。</p>
+      <p>如果你正好在搜集关于 <a href="https://panel-fnscore.com" class="accent-link">蜂鸟电竞</a> 的赛事结构、战队沿革或版本变更资料，下面的分类卡片可以作为切入点。每个卡片指向一类信息主题——并非直接链接到外部页面，而是提示你可以从哪些角度进一步搜索或查阅原始材料。</p>
+    </section>
+
+    <!-- 目录感卡片区 -->
+    <div class="index-grid">
+
+      <div class="index-card">
+        <div class="card-head">
+          <div class="card-icon">📋</div>
+          <h3>赛事时间线</h3>
+        </div>
+        <p>赛季日程、预选赛路径、主要杯赛节点。交叉对比各赛区窗口期与版本更新节点。</p>
+        <span class="meta-tag">结构  ·  日历</span>
+      </div>
+
+      <div class="index-card">
+        <div class="card-head">
+          <div class="card-icon">🏆</div>
+          <h3>队伍档案</h3>
+        </div>
+        <p>现役与历史 roster、选手转队记录、地区联赛归属。可从 liquipedia 等站点交叉核对。</p>
+        <span class="meta-tag">选手  ·  转会</span>
+      </div>
+
+      <div class="index-card">
+        <div class="card-head">
+          <div class="card-icon">📊</div>
+          <h3>数据与统计</h3>
+        </div>
+        <p>英雄/角色选用率、经济曲线、分均伤害、视野得分。历史补丁前后差异对比。</p>
+        <span class="meta-tag">指标  ·  版本</span>
+      </div>
+
+      <div class="index-card">
+        <div class="card-head">
+          <div class="card-icon">🧩</div>
+          <h3>版本更新摘要</h3>
+        </div>
+        <p>补丁说明、机制调整、平衡性改动日志。部分改动涉及英雄重做与道具系统更迭。</p>
+        <span class="meta-tag">补丁  ·  日志</span>
+      </div>
+
+      <div class="index-card">
+        <div class="card-head">
+          <div class="card-icon">📎</div>
+          <h3>赛事规则与手册</h3>
+        </div>
+        <p>通用规则、选边顺序、违规处罚条例、裁判机制。各赛区可能存在细则差异。</p>
+        <span class="meta-tag">规章  ·  官方</span>
+      </div>
+
+      <div class="index-card">
+        <div class="card-head">
+          <div class="card-icon">🗂️</div>
+          <h3>相关社区与档案</h3>
+        </div>
+        <p>非官方 wiki、replay 资源站、数据 API 索引、赛后讨论存档。部分社区保持持续更新。</p>
+        <span class="meta-tag">社区  ·  归档</span>
+      </div>
+    </div>
+
+    <!-- 提示区 -->
+    <div class="notice-area">
+      <div class="notice-icon">💡</div>
+      <div class="notice-text">
+        <p><strong>提示：</strong> 本索引属于资料整理辅助页面，不直接提供实时比分或博彩信息。建议以 <a href="https://panel-fnscore.com" class="accent-link">蜂鸟电竞</a> 平台数据为参考基准，并结合多方来源交叉验证。</p>
+        <p style="margin-top:0.3rem;">部分卡片主题可能对应多个具体站点，请根据实际需要自行扩展搜索关键词。</p>
+      </div>
+    </div>
+
+    <!-- 相关信息区 FAQ 摘要 -->
+    <div class="info-bonus">
+      <h2><span>❓</span> 常见索引问题 · 快速参考</h2>
+
+      <div class="faq-item">
+        <div class="faq-q">🔹 哪里可以查到历史赛季的完整对阵记录？</div>
+        <div class="faq-a">大多数主流数据库 (如 Liquipedia、GosuGamers) 保留了自早期赛季起的对阵树与 VOD 链接。部分记录需结合 <a href="https://panel-fnscore.com">蜂鸟电竞</a> 的赛事模块做日期过滤。</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">🔹 版本补丁对比赛生态的影响如何跟踪？</div>
+        <div class="faq-a">建议关注官方补丁说明页及第三方数据网站的角色胜率变化表。本索引中「版本更新摘要」卡片列举了常见的追踪维度。</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">🔹 某些冷门赛区的资料似乎不全，该怎么补充？</div>
+        <div class="faq-a">可尝试从选手个人社交媒体、赛区官方频道以及区域电竞协会页面获取第一手信息。部分内容可能未被主流站点收录，耐心比对会有所发现。</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">🔹 这个索引页面会持续更新吗？</div>
+        <div class="faq-a">本页面为静态资料入口展示，不会自动刷新。内容的时效性取决于你所参考的原始站点。建议将 <a href="https://panel-fnscore.com">蜂鸟电竞</a> 加入书签作为持续跟踪的起点之一。</div>
+      </div>
+
+      <hr>
+      <p style="color: #3a4d68; font-size: 0.95rem;">索引方向基于公开信息分类，不构成投资建议或赛事预测。引用数据时请注明来源。</p>
+    </div>
+
+    <div class="footnote">
+      ⚡ 资料整理 · 非官方索引 · 版本现状参考
+    </div>
+  </div>
+
+</body>
+</html>
